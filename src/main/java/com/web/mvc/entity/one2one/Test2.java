@@ -10,8 +10,8 @@ public class Test2 {
     static EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
 
     public static void main(String[] args) throws Exception {
-        add("John", "Mary");
-        add("Andy", "Anita");
+//        add("John", "Mary");
+//        add("Andy", "Anita");
 //        add("Tom", "Jane");
 //        queryHusband();
 //        queryWife();
