@@ -4,15 +4,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.web.mvc.entity.JPAUtil;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 public class Test1 {
     static EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
     public static void main(String[] args) throws Exception {
-        add("老張");
+        //add("老張");
         //get(51L);
         //query();
         //update(51L, "小英");
         //delete(51L);
+        //query("老李");
+        queryKeyword("%老%"); // %老,%老%,老%
     }
     
     public static void add(String name) {
@@ -33,6 +36,24 @@ public class Test1 {
     
     public static void query() throws Exception {
         List<Person> list = em.createQuery("Select p From Person p", Person.class).getResultList();
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(list);
+        System.out.println(json);
+    }
+    
+    public static void query(String name) throws Exception {
+        TypedQuery<Person> p = em.createQuery("Select p From Person p Where p.name =: aaa", Person.class);
+        p.setParameter("aaa", name);
+        List<Person> list = p.getResultList();
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(list);
+        System.out.println(json);
+    }
+    
+    public static void queryKeyword(String name) throws Exception {
+        TypedQuery<Person> p = em.createQuery("Select p From Person p Where p.name like : keyword", Person.class);
+        p.setParameter("keyword", name);
+        List<Person> list = p.getResultList();
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(list);
         System.out.println(json);
