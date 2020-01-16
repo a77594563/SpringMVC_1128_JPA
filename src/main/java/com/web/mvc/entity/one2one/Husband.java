@@ -31,10 +31,10 @@ public class Husband{
                 @JoinColumn( name = "wife_name", referencedColumnName = "name")
             }
     )*/ //較少見
-    //可加入 SQL 外鍵約束 SQL
-    //ALTER TABLE APP.HUSBAND ADD CONSTRAINT FK_WIFE FOREIGN KEY (WIFE_ID) REFERENCES APP.WIFE(ID);        
-    //可移除 SQL 外鍵約束 SQL
-    //ALTER TABLE APP.HUSBAND DROP CONSTRAINT FK_WIFE;    
+//    可加入 SQL 外鍵約束 SQL
+//    ALTER TABLE APP.HUSBAND ADD CONSTRAINT FK_WIFE FOREIGN KEY (WIFE_ID) REFERENCES APP.WIFE(ID);        
+//    可移除 SQL 外鍵約束 SQL
+//    ALTER TABLE APP.HUSBAND DROP CONSTRAINT FK_WIFE;    
     private Wife wife;
 
     public Long getId() {
