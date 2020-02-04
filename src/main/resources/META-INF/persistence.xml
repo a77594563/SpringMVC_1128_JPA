@@ -9,6 +9,8 @@
         <class>com.web.mvc.entity.one2many.Car</class>
         <class>com.web.mvc.entity.one2many.Driver</class>
         <class>com.web.mvc.entity.one2many.Price</class>
+        <class>com.web.mvc.entity.many2many.Stock</class>
+        <class>com.web.mvc.entity.many2many.Fund</class>
         <properties>
             <!-- 
               預設情況下，對象關係映射不會自動發生，但是您可以配置應用程序服務器以使用
