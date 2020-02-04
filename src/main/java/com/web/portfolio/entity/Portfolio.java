@@ -28,6 +28,17 @@ public class Portfolio {
     @JoinColumn(name = "investor", referencedColumnName = "id")
     @JsonIgnoreProperties("portfolios")
     private Investor investor;
+
+    public Portfolio() {
+    }
+
+    
+    public Portfolio(Long id, Integer amount, Double cost, Investor investor) {
+        this.id = id;
+        this.amount = amount;
+        this.cost = cost;
+        this.investor = investor;
+    }
     
     public Long getId() {
         return id;
