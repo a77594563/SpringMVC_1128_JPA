@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Portfolio {
@@ -25,9 +26,14 @@ public class Portfolio {
     private Date date = new Date();
     
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "investor", referencedColumnName = "id")
+    @JoinColumn(name = "investor_id", referencedColumnName = "id")
     @JsonIgnoreProperties("portfolios")
     private Investor investor;
+    
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "tstock_id", referencedColumnName = "id")
+    @JsonIgnoreProperties("portfolios")
+    private TStock tstock;
 
     public Portfolio() {
     }
@@ -78,6 +84,14 @@ public class Portfolio {
 
     public void setInvestor(Investor investor) {
         this.investor = investor;
+    }
+
+    public TStock getTstock() {
+        return tstock;
+    }
+
+    public void setTstock(TStock tstock) {
+        this.tstock = tstock;
     }
         
 }

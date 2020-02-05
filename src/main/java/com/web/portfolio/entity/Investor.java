@@ -30,7 +30,16 @@ public class Investor {
     @OneToMany(cascade=CascadeType.PERSIST, mappedBy = "investor")
     @JsonIgnoreProperties("investor")
     private Set<Watch> watchs;
-    
+
+    public Investor() {
+    }
+
+    public Investor(String email, String password, String username) {
+        this.email = email;
+        this.password = password;
+        this.username = username;
+    }
+
     public Long getId() {
         return id;
     }
