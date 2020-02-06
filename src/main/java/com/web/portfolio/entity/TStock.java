@@ -1,26 +1,36 @@
 package com.web.portfolio.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-public class TStock {
+public class TStock implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column
+    private String symbol;
     
     @Column
     private String name;
-    
-    @Column
-    private String symbol;
     
     // 以下是報價資料
     @Column
@@ -45,16 +55,15 @@ public class TStock {
     @JoinColumn(name = "classify_id", referencedColumnName = "id")
     @JsonIgnoreProperties("tStocks")
     private Classify classify;
-
+    
     public TStock() {
     }
 
-    public TStock(String name, String symbol, Classify classify) {
-        this.name = name;
+    public TStock(String symbol, String name, Classify classify) {
         this.symbol = symbol;
+        this.name = name;
         this.classify = classify;
     }
-
     
     public Long getId() {
         return id;
@@ -64,20 +73,28 @@ public class TStock {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getSymbol() {
         return symbol;
     }
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    public Classify getClassify() {
+        return classify;
+    }
+
+    public void setClassify(Classify classify) {
+        this.classify = classify;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BigDecimal getPreClosed() {
@@ -128,17 +145,5 @@ public class TStock {
         this.transactionDate = transactionDate;
     }
 
-    public Classify getClassify() {
-        return classify;
-    }
-
-    public void setClassify(Classify classify) {
-        this.classify = classify;
-    }
-
-    @Override
-    public String toString() {
-        return "TStock{" + "id=" + id + ", name=" + name + ", symbol=" + symbol + ", preClosed=" + preClosed + ", price=" + price + ", change=" + change + ", changeInPercent=" + changeInPercent + ", volumn=" + volumn + '}';
-    }
     
 }
