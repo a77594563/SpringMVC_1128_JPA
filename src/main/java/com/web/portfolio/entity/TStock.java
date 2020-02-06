@@ -135,5 +135,10 @@ public class TStock {
     public void setClassify(Classify classify) {
         this.classify = classify;
     }
+
+    @Override
+    public String toString() {
+        return "TStock{" + "id=" + id + ", name=" + name + ", symbol=" + symbol + ", preClosed=" + preClosed + ", price=" + price + ", change=" + change + ", changeInPercent=" + changeInPercent + ", volumn=" + volumn + '}';
+    }
     
 }

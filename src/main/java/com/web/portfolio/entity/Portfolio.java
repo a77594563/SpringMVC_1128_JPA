@@ -93,5 +93,10 @@ public class Portfolio {
     public void setTstock(TStock tstock) {
         this.tstock = tstock;
     }
+
+    @Override
+    public String toString() {
+        return "Portfolio{" + "id=" + id + ", amount=" + amount + ", cost=" + cost + ", date=" + date + '}';
+    }
         
 }

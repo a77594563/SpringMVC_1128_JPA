@@ -79,6 +79,11 @@ public class Watch {
     public void settStocks(Set<TStock> tStocks) {
         this.tStocks = tStocks;
     }
+
+    @Override
+    public String toString() {
+        return "Watch{" + "id=" + id + ", name=" + name + ", investor=" + investor + '}';
+    }
     
     
 }

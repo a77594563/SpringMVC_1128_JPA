@@ -17,6 +17,9 @@ public class Classify {
     @Column
     private String name;
     
+    @Column
+    private boolean transaction;
+    
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "classify")
     @JsonIgnoreProperties("classify")
     private Set<TStock> tStocks;
@@ -44,6 +47,20 @@ public class Classify {
     public void settStocks(Set<TStock> tStocks) {
         this.tStocks = tStocks;
     }
-    
+
+    public boolean isTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(boolean transaction) {
+        this.transaction = transaction;
+    }
+
+    @Override
+    public String toString() {
+        return "Classify{" + "id=" + id + ", name=" + name + ", transaction=" + transaction + '}';
+    }
+
+
     
 }

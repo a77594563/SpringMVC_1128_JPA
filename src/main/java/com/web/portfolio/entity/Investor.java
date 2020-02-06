@@ -23,6 +23,9 @@ public class Investor {
     @Column
     private String username;
     
+    @Column
+    private Integer balance;
+    
     @OneToMany(cascade=CascadeType.PERSIST, mappedBy = "investor")
     @JsonIgnoreProperties("investor")
     private Set<Portfolio> portfolios;
@@ -70,6 +73,35 @@ public class Investor {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
+
+    public Set<Portfolio> getPortfolios() {
+        return portfolios;
+    }
+
+    public void setPortfolios(Set<Portfolio> portfolios) {
+        this.portfolios = portfolios;
+    }
+
+    public Set<Watch> getWatchs() {
+        return watchs;
+    }
+
+    public void setWatchs(Set<Watch> watchs) {
+        this.watchs = watchs;
+    }
+
+    @Override
+    public String toString() {
+        return "Investor{" + "id=" + id + ", email=" + email + ", password=" + password + ", username=" + username + ", balance=" + balance + '}';
     }
     
 }
