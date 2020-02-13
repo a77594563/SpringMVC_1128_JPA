@@ -76,6 +76,7 @@
 
             function classify_list() {
                 $.get("/SpringMVC/mvc/portfolio/classify/", function (datas, status) {
+                    console.log("http狀態: " + status);
                     console.log("Datas: " + datas);
                     datas.map(function (data) {
                         $('#classify_id').append('<option value="' + data.id + '">' + data.name + '</option>');
