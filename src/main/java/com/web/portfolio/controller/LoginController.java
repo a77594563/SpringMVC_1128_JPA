@@ -4,7 +4,11 @@ import com.web.portfolio.entity.Investor;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +28,7 @@ public class LoginController {
         System.out.println(referer);
         
         try {
-            String sql = " SELECT i From Investor i where i.username=:name";
+            String sql = " SELECT i From Investor i where i.pass=true And i.username=:name";
             Investor investor = em.createQuery(sql, Investor.class)
                                     .setParameter("name", username)
                                     .getSingleResult();
@@ -49,6 +53,19 @@ public class LoginController {
     public String logout(HttpSession session){
         session.invalidate();
         return "redirect:/portfolio/login.jsp"; 
+    }
+    
+    @GetMapping("/verify/{id}/{code}")
+    @Transactional
+    public String verify(@PathVariable("id") Long id, @PathVariable("code") String code, Model model) {
+        String message = "ERROR";
+        Investor investor = em.find(Investor.class, id);
+        if (investor.getCode().equals(code)) {
+            investor.setPass(Boolean.TRUE);
+            em.persist(investor);
+            message = "SUCCESS";
+        }
+        return "redirect:/portfolio/verify.jsp?message=" + message;
     }
     
 }
