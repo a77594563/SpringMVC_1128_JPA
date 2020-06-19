@@ -28,6 +28,7 @@ public class InvestorController {
     
     @Autowired
     EmailService emailService;
+    
     @GetMapping(value = {"/", "/query"})
     public List<Investor> query() {
         Query query = em.createQuery("select i from Investor i");

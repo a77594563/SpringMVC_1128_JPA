@@ -110,7 +110,7 @@
                                 <fieldset>
                                     <legend> <h2 class="content-subhead">資料維護</h2></legend>
                                     
-                                    <input id="id" vslue="0"   name="id" placeholder="ID" readonly="true"/><p />
+                                    <input id="id" value="0"   name="id" placeholder="ID" readonly="true"/><p />
                                     <input id="username" name="username" placeholder="username"/><p />
                                     <input id="password" name="password" placeholder="password"/><p />
                                     <input id="email" name="email" placeholder="email"/><p />
